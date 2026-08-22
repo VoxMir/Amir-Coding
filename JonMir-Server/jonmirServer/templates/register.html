@@ -2,40 +2,40 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>JonMir - Sign Up</title>
+    <title>Create Account | JonMir</title>
 
     <link rel="icon"
         href="https://s3.getstickerpack.com/storage/uploads/sticker-pack/flork-stickers-hd-vol-2/sticker_18.png?b9f7e18dbaf8c330e2d0137f4d9e735a&d=200x200">
 
     <style>
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            margin: 0;
             min-height: 100vh;
 
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
 
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            color: #3d3030;
 
             background:
                 linear-gradient(
-                    135deg,
-                    rgba(30, 30, 35, 0.75),
-                    rgba(80, 227, 194, 0.45)
+                    rgba(255, 236, 236, 0.75),
+                    rgba(236, 211, 211, 0.85)
                 ),
-                url("https://static.vecteezy.com/system/resources/thumbnails/045/855/333/small/wall-grey-cement-texture-with-light-shadow-background-backdrop-gray-concrete-floor-room-surface-with-cracked-texture-pattern-banner-background-for-loft-design-concepts-vector.jpg");
+                url("{{ url_for('static', filename='images/about.jpg') }}");
 
             background-size: cover;
             background-position: center;
@@ -44,52 +44,35 @@
             padding: 30px 15px;
         }
 
-        .signup-container {
+
+        .register-container {
+            width: min(450px, 92%);
+        }
+
+
+        .register-box {
+
             width: 100%;
-            max-width: 450px;
-        }
 
-        .title {
-            text-align: center;
-            color: white;
-            margin-bottom: 20px;
-            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
-        }
+            padding: 42px;
 
-        .title h1 {
-            margin: 0;
-            font-size: 2rem;
-            font-weight: 700;
-        }
+            background: rgba(255, 248, 248, 0.72);
 
-        .title p {
-            margin-top: 8px;
-            color: #e5e7eb;
-            font-size: 0.95rem;
-        }
+            backdrop-filter: blur(15px);
 
-        .signup-box {
-            width: 100%;
-            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
 
-            background: rgba(255, 255, 255, 0.92);
-
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 24px;
+            border-radius: 25px;
 
             box-shadow:
-                0 20px 50px rgba(0, 0, 0, 0.3),
-                0 0 30px rgba(80, 227, 194, 0.15);
-
-            backdrop-filter: blur(12px);
-
-            display: flex;
-            flex-direction: column;
+                0 25px 70px rgba(89, 57, 57, 0.20);
 
             animation: appear 0.6s ease;
         }
 
+
         @keyframes appear {
+
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -99,92 +82,169 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+
         }
 
-        .signup-box h2 {
-            margin: 0 0 6px;
-            color: #252532;
-            font-size: 1.5rem;
+
+        .heart {
+
             text-align: center;
+
+            color: #a26f6f;
+
+            font-size: 27px;
+
+            margin-bottom: 10px;
         }
 
-        .subtitle {
-            margin: 0 0 25px;
+
+        .small-title {
+
             text-align: center;
-            color: #6b7280;
-            font-size: 0.9rem;
+
+            color: #9b6b6b;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
         }
+
+
+        h1 {
+
+            font-family: Georgia, serif;
+
+            font-size: 40px;
+
+            color: #382b2b;
+
+            text-align: center;
+
+            margin-bottom: 10px;
+        }
+
+
+        .description {
+
+            color: #6a5a5a;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            text-align: center;
+
+            margin-bottom: 28px;
+        }
+
 
         .form-group {
-            margin-bottom: 18px;
+
+            text-align: left;
+
+            margin-bottom: 17px;
         }
+
 
         label {
-            display: block;
-            margin-bottom: 7px;
 
-            color: #30303e;
-            font-weight: bold;
-            font-size: 0.9rem;
+            display: block;
+
+            color: #4b3d3d;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
         }
 
-        input {
-            width: 100%;
-            padding: 12px 13px;
 
-            border: 2px solid #e0e2e7;
+        .required {
+
+            color: #a26f6f;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border: 1px solid #d6bcbc;
+
             border-radius: 10px;
 
-            background: #ffffff;
-            color: #30303e;
+            background: rgba(255, 255, 255, 0.7);
 
-            font-size: 0.95rem;
+            color: #3d3030;
+
+            font-size: 14px;
 
             outline: none;
 
-            transition:
-                border-color 0.2s ease,
-                box-shadow 0.2s ease,
-                transform 0.2s ease;
+            transition: 0.3s ease;
         }
+
+
+        input::placeholder {
+
+            color: #a99a9a;
+        }
+
 
         input:hover {
-            border-color: #b8c0cc;
+
+            border-color: #c5a5a5;
         }
 
+
         input:focus {
-            border-color: #50cfae;
+
+            border-color: #a26f6f;
 
             box-shadow:
-                0 0 0 4px rgba(80, 207, 174, 0.15);
+                0 0 0 3px rgba(162, 111, 111, 0.12);
 
             transform: translateY(-1px);
         }
 
+
         input.error {
-            border-color: #ef4444;
+
+            border-color: #c65c5c;
+
+            box-shadow:
+                0 0 0 3px rgba(198, 92, 92, 0.08);
         }
 
-        .error-message {
-            display: none;
-            margin-top: 5px;
 
-            color: #dc2626;
-            font-size: 0.8rem;
-        }
 
         .password-wrapper {
+
             position: relative;
         }
 
+
         .password-wrapper input {
-            padding-right: 75px;
+
+            padding-right: 70px;
         }
 
+
         .show-password {
+
             position: absolute;
 
             right: 8px;
+
             top: 50%;
 
             transform: translateY(-50%);
@@ -192,226 +252,532 @@
             padding: 6px 9px;
 
             border: none;
+
             border-radius: 7px;
 
             background: transparent;
-            color: #555;
+
+            color: #765858;
 
             cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: bold;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.2s ease;
         }
+
 
         .show-password:hover {
-            background: #f0f0f0;
-            color: #222;
+
+            background: rgba(162, 111, 111, 0.10);
+
+            color: #684d4d;
         }
+
 
         .password-hint {
+
             margin-top: 6px;
 
-            color: #777;
-            font-size: 0.75rem;
+            color: #8b7777;
+
+            font-size: 12px;
         }
 
+
+        .error-message {
+
+            display: none;
+
+            margin-top: 6px;
+
+            color: #b44747;
+
+            font-size: 12px;
+        }
+
+
         .terms {
+
             display: flex;
+
             align-items: flex-start;
+
             gap: 9px;
 
             margin: 8px 0 5px;
         }
 
+
         .terms input {
+
             width: 17px;
+
             height: 17px;
 
             margin-top: 2px;
 
-            accent-color: #50cfae;
+            accent-color: #684d4d;
 
             cursor: pointer;
         }
 
+
         .terms label {
+
             margin: 0;
 
-            color: #555;
-            font-weight: normal;
-            font-size: 0.85rem;
+            color: #6a5a5a;
 
-            line-height: 1.4;
+            font-weight: normal;
+
+            font-size: 12px;
+
+            line-height: 1.5;
         }
 
+
         .terms a {
-            color: #159a7d;
-            font-weight: bold;
+
+            color: #9b6b6b;
+
+            font-weight: 700;
+
             text-decoration: none;
         }
 
+
         .terms a:hover {
+
+            color: #684d4d;
+
             text-decoration: underline;
         }
 
+
         .terms-error {
-            margin-bottom: 15px;
+
+            margin-bottom: 5px;
         }
 
+
         .create-button {
+
             width: 100%;
 
-            padding: 13px;
+            padding: 14px;
 
             margin-top: 12px;
 
             border: none;
+
             border-radius: 10px;
 
-            background: linear-gradient(
-                135deg,
-                #30303e,
-                #159a7d
-            );
+            background: #684d4d;
 
-            color: white;
+            color: #fff5f5;
 
-            font-size: 1rem;
-            font-weight: bold;
+            font-size: 15px;
+
+            font-weight: 700;
 
             cursor: pointer;
 
-            box-shadow: 0 5px 15px rgba(21, 154, 125, 0.25);
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease,
-                opacity 0.2s ease;
+            transition: 0.3s ease;
         }
 
+
         .create-button:hover {
+
+            background: #8c6464;
+
             transform: translateY(-2px);
 
             box-shadow:
-                0 8px 20px rgba(21, 154, 125, 0.35);
+                0 8px 20px rgba(89, 57, 57, 0.15);
         }
 
+
         .create-button:active {
+
             transform: translateY(0);
         }
 
+
+        .create-button:disabled {
+
+            opacity: 0.65;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
         .login-link {
+
             display: block;
 
-            margin-top: 20px;
+            margin-top: 22px;
 
             text-align: center;
 
-            color: #30303e;
-            font-size: 0.9rem;
+            color: #6a5a5a;
+
+            font-size: 14px;
+
             text-decoration: none;
         }
 
+
         .login-link span {
-            color: #159a7d;
-            font-weight: bold;
+
+            color: #9b6b6b;
+
+            font-weight: 700;
         }
 
+
         .login-link:hover span {
+
+            color: #684d4d;
+
             text-decoration: underline;
         }
 
-        .required {
-            color: #ef4444;
-        }
+
 
         @media (max-width: 500px) {
+
             body {
+
                 padding: 20px 12px;
+
                 align-items: flex-start;
             }
 
-            .signup-container {
+
+            .register-container {
+
                 margin-top: 20px;
             }
 
-            .signup-box {
-                padding: 25px 20px;
+
+            .register-box {
+
+                padding: 32px 24px;
+
                 border-radius: 20px;
             }
 
-            .title h1 {
-                font-size: 1.6rem;
+
+            h1 {
+
+                font-size: 34px;
             }
+
         }
+
     </style>
+
+</head>
+
+
+<body>
+
+    <main class="register-container">
+
+        <div class="register-box">
+
+            <div class="heart">
+                ♥
+            </div>
+
+
+            <div class="small-title">
+                JonMir
+            </div>
+
+
+            <h1>
+                Create Account
+            </h1>
+
+
+            <p class="description">
+                Create your JonMir account and get started.
+            </p>
+
+
+            <form
+                method="POST"
+                action="{{ url_for('register') }}"
+                onsubmit="return createAccount();"
+            >
+
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+                    <span
+                        id="email-error"
+                        class="error-message">
+                    </span>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Choose a username"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <span
+                        id="username-error"
+                        class="error-message">
+                    </span>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                        <span class="required">*</span>
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            id="showPassword"
+                            onclick="togglePassword()"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+
+                    <div class="password-hint">
+                        Use at least 8 characters.
+                    </div>
+
+
+                    <span
+                        id="password-error"
+                        class="error-message">
+                    </span>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="date">
+                        Date of Birth
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        name="date"
+                        required
+                    >
+
+                    <span
+                        id="date-error"
+                        class="error-message">
+                    </span>
+
+                </div>
+
+
+
+                <div class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="checked"
+                        name="terms"
+                    >
+
+                    <label for="checked">
+
+                        I agree to the
+
+                        <a href="rules.html">
+                            Terms of Use
+                        </a>
+
+                    </label>
+
+                </div>
+
+
+                <span
+                    id="checked-error"
+                    class="error-message terms-error">
+                </span>
+
+
+
+                <button
+                    type="submit"
+                    id="createButton"
+                    class="create-button"
+                >
+                    Create Account
+                </button>
+
+
+            </form>
+
+
+            <a
+                href="{{ url_for('handle_form') }}"
+                class="login-link"
+            >
+                Already have an account?
+                <span>Log in</span>
+            </a>
+
+        </div>
+
+    </main>
+
 
     <script>
 
-        function sendtorules() {
-            window.location.href = "rules.html";
-        }
-
-        function sendtologin() {
-            window.location.href = "/";
-        }
-
         function togglePassword() {
-            const password = document.getElementById("password");
-            const button = document.getElementById("showPassword");
+
+            const password =
+                document.getElementById("password");
+
+            const button =
+                document.getElementById("showPassword");
+
 
             if (password.type === "password") {
+
                 password.type = "text";
+
                 button.textContent = "Hide";
+
             } else {
+
                 password.type = "password";
+
                 button.textContent = "Show";
+
             }
         }
 
+
         function showError(id, message) {
-            const error = document.getElementById(id);
+
+            const error =
+                document.getElementById(id);
 
             error.textContent = message;
+
             error.style.display = "block";
         }
 
+
         function clearErrors() {
 
-            const errors = document.querySelectorAll(".error-message");
+            const errors =
+                document.querySelectorAll(".error-message");
+
 
             errors.forEach(error => {
+
                 error.style.display = "none";
+
                 error.textContent = "";
+
             });
 
-            const inputs = document.querySelectorAll("input");
+
+            const inputs =
+                document.querySelectorAll("input");
+
 
             inputs.forEach(input => {
+
                 input.classList.remove("error");
+
             });
         }
+
 
         function createAccount() {
 
             clearErrors();
 
+
             const email =
                 document.getElementById("email").value.trim();
 
-            const firstname =
-                document.getElementById("firstname").value.trim();
 
-            const lastname =
-                document.getElementById("lastname").value.trim();
+            const username =
+                document.getElementById("username").value.trim();
+
 
             const password =
                 document.getElementById("password").value;
 
+
             const date =
                 document.getElementById("date").value;
 
+
             const checked =
                 document.getElementById("checked").checked;
+
 
             let valid = true;
 
@@ -423,7 +789,8 @@
                     "Please enter your email."
                 );
 
-                document.getElementById("email")
+                document
+                    .getElementById("email")
                     .classList.add("error");
 
                 valid = false;
@@ -435,39 +802,28 @@
                     "Please enter a valid email."
                 );
 
-                document.getElementById("email")
+                document
+                    .getElementById("email")
                     .classList.add("error");
 
                 valid = false;
             }
 
 
-            if (firstname === "") {
+            if (username === "") {
 
                 showError(
-                    "firstname-error",
-                    "Please enter your first name."
+                    "username-error",
+                    "Please choose a username."
                 );
 
-                document.getElementById("firstname")
+                document
+                    .getElementById("username")
                     .classList.add("error");
 
                 valid = false;
             }
 
-
-            if (lastname === "") {
-
-                showError(
-                    "lastname-error",
-                    "Please enter your last name."
-                );
-
-                document.getElementById("lastname")
-                    .classList.add("error");
-
-                valid = false;
-            }
 
 
             if (password === "") {
@@ -477,7 +833,8 @@
                     "Please create a password."
                 );
 
-                document.getElementById("password")
+                document
+                    .getElementById("password")
                     .classList.add("error");
 
                 valid = false;
@@ -489,7 +846,8 @@
                     "Password must contain at least 8 characters."
                 );
 
-                document.getElementById("password")
+                document
+                    .getElementById("password")
                     .classList.add("error");
 
                 valid = false;
@@ -504,7 +862,8 @@
                     "Please enter your date of birth."
                 );
 
-                document.getElementById("date")
+                document
+                    .getElementById("date")
                     .classList.add("error");
 
                 valid = false;
@@ -523,229 +882,28 @@
             }
 
 
+
             if (valid) {
 
                 const button =
                     document.getElementById("createButton");
 
-                button.textContent = "Creating Account...";
+
+                button.textContent =
+                    "Creating Account...";
+
                 button.disabled = true;
 
-                setTimeout(() => {
-                    window.location.href = "/";
-                }, 800);
+
+                return true;
             }
+
 
             return false;
         }
 
     </script>
 
-</head>
-
-
-<body>
-
-    <main class="signup-container">
-
-        <div class="title">
-
-
-        </div>
-
-
-        <div class="signup-box">
-
-            <h2>Create Your Account</h2>
-
-            <p class="subtitle">
-                Fill in your information to get started.
-            </p>
-
-
-            <form onsubmit="return createAccount();">
-
-
-                <div class="form-group">
-
-                    <label for="email">
-                        Email <span class="required">*</span>
-                    </label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="you@example.com"
-                        autocomplete="email"
-                    >
-
-                    <span
-                        id="email-error"
-                        class="error-message">
-                    </span>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="firstname">
-                        First Name <span class="required">*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="firstname"
-                        name="firstname"
-                        placeholder="Your first name"
-                        autocomplete="given-name"
-                    >
-
-                    <span
-                        id="firstname-error"
-                        class="error-message">
-                    </span>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="lastname">
-                        Last Name <span class="required">*</span>
-                    </label>
-
-                    <input
-                        type="text"
-                        id="lastname"
-                        name="lastname"
-                        placeholder="Your last name"
-                        autocomplete="family-name"
-                    >
-
-                    <span
-                        id="lastname-error"
-                        class="error-message">
-                    </span>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="password">
-                        Password <span class="required">*</span>
-                    </label>
-
-                    <div class="password-wrapper">
-
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Create a password"
-                            autocomplete="new-password"
-                        >
-
-                        <button
-                            type="button"
-                            class="show-password"
-                            id="showPassword"
-                            onclick="togglePassword()">
-
-                            Show
-
-                        </button>
-
-                    </div>
-
-                    <div class="password-hint">
-                        Use at least 8 characters.
-                    </div>
-
-                    <span
-                        id="password-error"
-                        class="error-message">
-                    </span>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="date">
-                        Date Of Birth <span class="required">*</span>
-                    </label>
-
-                    <input
-                        type="date"
-                        id="date"
-                        name="date"
-                    >
-
-                    <span
-                        id="date-error"
-                        class="error-message">
-                    </span>
-
-                </div>
-
-
-                <div class="terms">
-
-                    <input
-                        type="checkbox"
-                        id="checked"
-                        name="terms"
-                    >
-
-                    <label for="checked">
-
-                        I accept the
-
-                        <a
-                            href="rules.html"
-                            onclick="sendtorules(); return false;">
-
-                            Terms of Use
-
-                        </a>
-
-                    </label>
-
-                </div>
-
-                <span
-                    id="checked-error"
-                    class="error-message terms-error">
-                </span>
-
-                <button
-                    type="submit"
-                    id="createButton"
-                    class="create-button">
-
-                    Create Account
-
-                </button>
-
-                <a
-                    href="/"
-                    class="login-link"
-                    onclick="sendtologin(); return false;">
-
-                    Already have an account?
-                    <span>Log in</span>
-
-                </a>
-
-            </form>
-
-        </div>
-
-    </main>
-
 </body>
 
 </html>
-

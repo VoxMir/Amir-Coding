@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Account Created | JonMir</title>
+
+    <link rel="icon"
+        href="https://s3.getstickerpack.com/storage/uploads/sticker-pack/flork-stickers-hd-vol-2/sticker_18.png?b9f7e18dbaf8c330e2d0137f4d9e735a&d=200x200">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            color: #3d3030;
+
+            background:
+                linear-gradient(
+                    rgba(255, 236, 236, 0.75),
+                    rgba(236, 211, 211, 0.85)
+                ),
+                url("{{ url_for('static', filename='images/about.jpg') }}");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            padding: 25px;
+        }
+
+
+        .success-container {
+
+            width: min(460px, 92%);
+
+            animation: appear 0.6s ease;
+        }
+
+
+        @keyframes appear {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .success-box {
+
+            padding: 45px;
+
+            text-align: center;
+
+            background: rgba(255, 248, 248, 0.75);
+
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.7);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 25px 70px rgba(89, 57, 57, 0.20);
+        }
+
+
+        .heart {
+
+            color: #a26f6f;
+
+            font-size: 32px;
+
+            margin-bottom: 15px;
+
+            animation: heartbeat 1.5s infinite;
+        }
+
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+
+        }
+
+
+        .small-title {
+
+            color: #9b6b6b;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+
+        h1 {
+
+            font-family: Georgia, serif;
+
+            font-size: 40px;
+
+            color: #382b2b;
+
+            margin-bottom: 15px;
+        }
+
+
+        .description {
+
+            color: #6a5a5a;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            margin-bottom: 28px;
+        }
+
+
+        .check {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin: 0 auto 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(162, 111, 111, 0.12);
+
+            border: 2px solid rgba(162, 111, 111, 0.35);
+
+            color: #684d4d;
+
+            font-size: 34px;
+
+            font-weight: bold;
+        }
+
+
+        .account-info {
+
+            margin-bottom: 25px;
+
+            padding: 18px;
+
+            text-align: left;
+
+            border-radius: 14px;
+
+            background: rgba(255, 255, 255, 0.45);
+
+            border: 1px solid rgba(214, 188, 188, 0.6);
+        }
+
+
+        .info-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 8px 0;
+
+            font-size: 14px;
+
+            border-bottom: 1px solid rgba(155, 107, 107, 0.12);
+        }
+
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .info-label {
+
+            color: #8b7777;
+
+            font-weight: 700;
+        }
+
+
+        .info-value {
+
+            color: #4b3d3d;
+
+            font-weight: 600;
+
+            text-align: right;
+
+            word-break: break-word;
+        }
+
+
+        .login-button {
+
+            display: block;
+
+            width: 100%;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            background: #684d4d;
+
+            color: #fff5f5;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            transition: 0.3s ease;
+        }
+
+
+        .login-button:hover {
+
+            background: #8c6464;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(89, 57, 57, 0.15);
+        }
+
+
+        .login-button:active {
+
+            transform: translateY(0);
+        }
+
+
+        .footer {
+
+            margin-top: 22px;
+
+            color: #8b7777;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 20px 12px;
+            }
+
+            .success-box {
+                padding: 35px 25px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            .info-row {
+                flex-direction: column;
+                gap: 3px;
+            }
+
+            .info-value {
+                text-align: left;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="success-container">
+
+
+        <div class="success-box">
+
+
+            <div class="heart">
+                ♥
+            </div>
+
+
+            <div class="small-title">
+                JonMir
+            </div>
+
+
+            <div class="check">
+                ✓
+            </div>
+
+
+            <h1>
+                Account Created!
+            </h1>
+
+
+            <p class="description">
+
+                Welcome to JonMir,
+                <strong>{{ username }}</strong>.
+
+                Your account has been created successfully.
+
+            </p>
+
+
+            <div class="account-info">
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Username
+                    </span>
+
+                    <span class="info-value">
+                        {{ username }}
+                    </span>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span class="info-label">
+                        Email
+                    </span>
+
+                    <span class="info-value">
+                        {{ email }}
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <a
+                href="{{ url_for('handle_form') }}"
+                class="login-button"
+            >
+                Continue to Login
+            </a>
+
+
+            <div class="footer">
+
+                Your JonMir account is ready.
+                You can now sign in using your credentials.
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Email Found | JonMir</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            color: #3d3030;
+
+            background:
+                linear-gradient(
+                    rgba(255, 236, 236, 0.75),
+                    rgba(236, 211, 211, 0.85)
+                ),
+                url("{{ url_for('static', filename='images/about.jpg') }}");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .box {
+            width: min(450px, 90%);
+
+            padding: 45px;
+
+            text-align: center;
+
+            background: rgba(255, 248, 248, 0.72);
+
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.7);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 25px 70px rgba(89, 57, 57, 0.20);
+        }
+
+        .heart {
+            color: #a26f6f;
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .small-title {
+            color: #9b6b6b;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-family: Georgia, serif;
+            font-size: 40px;
+            color: #382b2b;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #6a5a5a;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .email {
+            padding: 14px 18px;
+
+            margin-bottom: 25px;
+
+            border-radius: 10px;
+
+            background: rgba(162, 111, 111, 0.10);
+
+            color: #684d4d;
+
+            font-weight: 700;
+        }
+
+        .button {
+            display: block;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            background: #684d4d;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            transition: 0.3s ease;
+        }
+
+        .button:hover {
+            background: #8c6464;
+            transform: translateY(-2px);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box">
+
+        <div class="heart">
+            ♥
+        </div>
+
+        <div class="small-title">
+            JonMir
+        </div>
+
+        <h1>
+            Email Found
+        </h1>
+
+        <p>
+            We found the email address associated
+            with your JonMir account.
+        </p>
+
+        <div class="email">
+            {{ email }}
+        </div>
+
+        <a
+            href="{{ url_for('respassword') }}"
+            class="button"
+        >
+            Reset My Password
+        </a>
+
+    </div>
+
+</body>
+
+</html>

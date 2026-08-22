@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Account Not Found | JonMir</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    rgba(255,236,236,.75),
+                    rgba(236,211,211,.85)
+                ),
+                url("{{ url_for('static', filename='images/about.jpg') }}");
+
+            background-size: cover;
+            background-position: center;
+
+            color: #3d3030;
+        }
+
+        .box {
+            width: min(450px, 90%);
+
+            padding: 45px;
+
+            text-align: center;
+
+            background: rgba(255,248,248,.72);
+
+            backdrop-filter: blur(15px);
+
+            border-radius: 25px;
+
+            border: 1px solid rgba(255,255,255,.7);
+
+            box-shadow:
+                0 25px 70px rgba(89,57,57,.2);
+        }
+
+        .heart {
+            font-size: 35px;
+            color: #a26f6f;
+            margin-bottom: 15px;
+        }
+
+        .small-title {
+            color: #9b6b6b;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-family: Georgia, serif;
+
+            font-size: 38px;
+
+            color: #382b2b;
+
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #6a5a5a;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: block;
+
+            padding: 14px;
+
+            background: #684d4d;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-weight: 700;
+        }
+
+        .button:hover {
+            background: #8c6464;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="box">
+
+        <div class="heart">
+            ♥
+        </div>
+
+        <div class="small-title">
+            JonMir
+        </div>
+
+        <h1>
+            Account Not Found
+        </h1>
+
+        <p>
+            We couldn't find an account associated
+            with that username.
+        </p>
+
+        <a
+            href="{{ url_for('changeemail') }}"
+            class="button"
+        >
+            Try Again
+        </a>
+
+    </div>
+
+</body>
+
+</html>
