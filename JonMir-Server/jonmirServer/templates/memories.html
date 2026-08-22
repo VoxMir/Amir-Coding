@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Memories | JonMir</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #3d3030;
+
+            background:
+                linear-gradient(
+                    rgba(255, 236, 236, 0.72),
+                    rgba(236, 211, 211, 0.80)
+                ),
+                url("{{ url_for('static', filename='images/about.jpg') }}");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        nav {
+            width: 100%;
+
+            padding: 22px 7%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 55px;
+
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        nav a {
+            color: #332929;
+
+            text-decoration: none;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            position: relative;
+
+            transition: 0.3s ease;
+        }
+
+
+        nav a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            bottom: -7px;
+
+            width: 0;
+            height: 2px;
+
+            background: #9d6c6c;
+
+            transform: translateX(-50%);
+
+            transition: 0.3s ease;
+        }
+
+
+        nav a:hover {
+            color: #9d6c6c;
+        }
+
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+
+        .heading {
+            text-align: center;
+
+            padding: 90px 20px 60px;
+        }
+
+
+        .heading .small-title {
+            color: #9b6b6b;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+
+        .heading h1 {
+            font-family: Georgia, serif;
+
+            font-size: clamp(48px, 7vw, 76px);
+
+            line-height: 0.95;
+
+            color: #382b2b;
+
+            margin-bottom: 20px;
+        }
+
+
+        .heading h1 span {
+            color: #a26f6f;
+        }
+
+
+        .heading p {
+            max-width: 600px;
+
+            margin: auto;
+
+            color: #5d4c4c;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+        }
+
+
+        .featured {
+            width: min(1050px, 90%);
+
+            margin: 0 auto 90px;
+
+            display: grid;
+
+            grid-template-columns: 1.1fr 0.9fr;
+
+            background: rgba(255, 248, 248, 0.65);
+
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.7);
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(89, 57, 57, 0.16);
+        }
+
+
+        .featured-image {
+            min-height: 450px;
+
+            overflow: hidden;
+        }
+
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: 0.6s ease;
+        }
+
+
+        .featured:hover .featured-image img {
+            transform: scale(1.05);
+        }
+
+
+        .featured-content {
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            padding: 55px;
+        }
+
+
+        .featured-label {
+            color: #a26f6f;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+
+        .featured-content h2 {
+            font-family: Georgia, serif;
+
+            font-size: 42px;
+
+            color: #382b2b;
+
+            margin-bottom: 18px;
+        }
+
+
+        .featured-content .date {
+            color: #9b6b6b;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+
+        .featured-content p {
+            color: #5c4d4d;
+
+            line-height: 1.8;
+
+            font-size: 16px;
+        }
+
+
+        .section-title {
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+
+        .section-title span {
+            color: #a26f6f;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+        }
+
+
+        .section-title h2 {
+            font-family: Georgia, serif;
+
+            font-size: 42px;
+
+            color: #382b2b;
+
+            margin-top: 10px;
+        }
+
+        .memories {
+            width: min(1100px, 90%);
+
+            margin: auto;
+
+            padding-bottom: 110px;
+        }
+
+
+        .memory-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 35px;
+        }
+
+        .memory {
+            background: #fffafa;
+
+            padding: 12px 12px 25px;
+
+            border-radius: 4px;
+
+            box-shadow:
+                0 12px 30px rgba(70, 45, 45, 0.15);
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+
+            position: relative;
+        }
+
+
+        .memory:nth-child(1) {
+            transform: rotate(-2deg);
+        }
+
+
+        .memory:nth-child(2) {
+            transform: rotate(1.5deg);
+        }
+
+
+        .memory:nth-child(3) {
+            transform: rotate(-1deg);
+        }
+
+
+        .memory:nth-child(4) {
+            transform: rotate(2deg);
+        }
+
+
+        .memory:nth-child(5) {
+            transform: rotate(-1.5deg);
+        }
+
+
+        .memory:nth-child(6) {
+            transform: rotate(1deg);
+        }
+
+
+        .memory:hover {
+            transform:
+                translateY(-12px)
+                rotate(0deg)
+                scale(1.02);
+
+            box-shadow:
+                0 25px 45px rgba(70, 45, 45, 0.23);
+
+            z-index: 5;
+        }
+
+
+        .memory-image {
+            width: 100%;
+
+            aspect-ratio: 4 / 3;
+
+            overflow: hidden;
+
+            background: #eadada;
+        }
+
+
+        .memory-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: 0.5s ease;
+        }
+
+
+        .memory:hover .memory-image img {
+            transform: scale(1.07);
+        }
+
+
+        .memory-content {
+            padding: 20px 10px 5px;
+        }
+
+
+        .memory-date {
+            color: #a26f6f;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 8px;
+        }
+
+
+        .memory h3 {
+            font-family: Georgia, serif;
+
+            color: #3d3030;
+
+            font-size: 23px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .memory p {
+            color: #6a5a5a;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+        .quote-section {
+            width: min(900px, 90%);
+
+            margin: 0 auto 110px;
+
+            text-align: center;
+
+            padding: 65px 40px;
+
+            background: rgba(255, 248, 248, 0.55);
+
+            backdrop-filter: blur(12px);
+
+            border-radius: 25px;
+
+            border: 1px solid rgba(255, 255, 255, 0.65);
+        }
+
+
+        .quote-heart {
+            color: #a26f6f;
+
+            font-size: 35px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .quote-section p {
+            font-family: Georgia, serif;
+
+            font-size: 27px;
+
+            font-style: italic;
+
+            line-height: 1.6;
+
+            color: #4b3d3d;
+        }
+
+
+        .quote-section span {
+            display: block;
+
+            margin-top: 20px;
+
+            font-size: 13px;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            font-style: normal;
+
+            color: #9b6b6b;
+
+            letter-spacing: 2px;
+        }
+
+        footer {
+            padding: 45px 20px;
+
+            text-align: center;
+
+            background: rgba(55, 45, 45, 0.88);
+
+            color: #eee0e0;
+        }
+
+
+        footer h2 {
+            font-family: Georgia, serif;
+
+            margin-bottom: 10px;
+        }
+
+
+        footer p {
+            font-size: 13px;
+
+            color: #cdbebe;
+        }
+
+        @media (max-width: 800px) {
+
+            nav {
+                gap: 20px;
+
+                padding: 18px 10px;
+            }
+
+
+            nav a {
+                font-size: 12px;
+            }
+
+
+            .heading {
+                padding-top: 65px;
+            }
+
+
+            .featured {
+                grid-template-columns: 1fr;
+            }
+
+
+            .featured-image {
+                min-height: 350px;
+            }
+
+
+            .featured-content {
+                padding: 35px;
+            }
+
+
+            .featured-content h2 {
+                font-size: 34px;
+            }
+
+
+            .memory-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .memory:nth-child(n) {
+                transform: rotate(0deg);
+            }
+
+
+            .quote-section {
+                padding: 45px 25px;
+            }
+
+
+            .quote-section p {
+                font-size: 21px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <nav>
+
+        <a href="{{ url_for('jonmir') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('aboutus') }}">
+            About
+        </a>
+
+        <a href="#memories">
+            Memories
+        </a>
+
+        <a href="{{ url_for('backups') }}">
+            Our Backups
+        </a>
+
+        <a href="https://www.youtube.com/@JaVoxMashups">
+            YouTube
+        </a>
+
+    </nav>
+
+
+    <header class="heading">
+
+        <div class="small-title">
+            JonMir
+        </div>
+
+        <h1>
+            Our <span>Memories</span>
+        </h1>
+
+        <p>
+            A little collection of the moments, laughs, adventures,
+            and memories that make our story ours.
+        </p>
+
+    </header>
+
+    <section class="featured">
+
+        <div class="featured-image">
+
+            <img
+                src="{{ url_for('static', filename='images/jonmir_memories7.jpg') }}"
+                alt="Our favorite memory"
+            >
+
+        </div>
+
+
+        <div class="featured-content">
+
+            <div class="featured-label">
+                Featured Memory
+            </div>
+
+            <h2>
+                Just Us
+            </h2>
+
+            <div class="date">
+                A moment worth remembering ♡
+            </div>
+
+            <p>
+                Some memories don't need a complicated story.
+                Sometimes it's just the two of us, laughing,
+                talking, or doing absolutely nothing together.
+
+                <br><br>
+
+                Those are often the moments we end up remembering
+                the most.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="memories" id="memories">
+
+        <div class="section-title">
+
+            <span>The Collection</span>
+
+            <h2>Little Moments</h2>
+
+        </div>
+
+
+        <div class="memory-grid">
+
+
+            <article class="memory">
+
+                <div class="memory-image">
+
+                    <img
+                        src="{{ url_for('static', filename='images/jonmir_memories2.png') }}"
+                        alt="JonMir memory"
+                    >
+
+                </div>
+
+                <div class="memory-content">
+
+                    <div class="memory-date">
+                        A favorite moment
+                    </div>
+
+                    <h3>
+                        Together ♡
+                    </h3>
+
+                    <p>
+                        One of those moments where everything
+                        just feels right.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="memory">
+
+                <div class="memory-image">
+
+                    <img
+                        src="{{ url_for('static', filename='images/jonmir_memories1.png') }}"
+                        alt="JonMir memory"
+                    >
+
+                </div>
+
+                <div class="memory-content">
+
+                    <div class="memory-date">
+                        One for the books
+                    </div>
+
+                    <h3>
+                        Us Being Us
+                    </h3>
+
+                    <p>
+                        No special occasion needed.
+                        Just another memory to keep.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="memory">
+
+                <div class="memory-image">
+
+                    <img
+                        src="{{ url_for('static', filename='images/jonmir_memories3.png') }}"
+                        alt="JonMir memory"
+                    >
+
+                </div>
+
+                <div class="memory-content">
+
+                    <div class="memory-date">
+                        Always remember
+                    </div>
+
+                    <h3>
+                        This Moment
+                    </h3>
+
+                    <p>
+                        The kind of picture that brings back
+                        an entire feeling.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="memory">
+
+                <div class="memory-image">
+
+                    <img
+                        src="{{ url_for('static', filename='images/jonmir_memories6.jpg') }}"
+                        alt="JonMir memory"
+                    >
+
+                </div>
+
+                <div class="memory-content">
+
+                    <div class="memory-date">
+                        Another chapter
+                    </div>
+
+                    <h3>
+                        Our Story
+                    </h3>
+
+                    <p>
+                        Every picture becomes another little
+                        chapter in the JonMir story.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="memory">
+
+                <div class="memory-image">
+
+                    <img
+                        src="{{ url_for('static', filename='images/jonmir_memories5.jpg') }}"
+                        alt="JonMir memory"
+                    >
+
+                </div>
+
+                <div class="memory-content">
+
+                    <div class="memory-date">
+                        Forever a favorite
+                    </div>
+
+                    <h3>
+                        Happy Together
+                    </h3>
+
+                    <p>
+                        A simple moment, but one that deserves
+                        a permanent place here.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="memory">
+
+                <div class="memory-image">
+
+                    <img
+                        src="{{ url_for('static', filename='images/jonmir_memories4.jpg') }}"
+                        alt="JonMir memory"
+                    >
+
+                </div>
+
+                <div class="memory-content">
+
+                    <div class="memory-date">
+                        To be continued...
+                    </div>
+
+                    <h3>
+                        More To Come
+                    </h3>
+
+                    <p>
+                        This collection isn't finished.
+                        There are still so many memories to make.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+    <section class="quote-section">
+
+        <div class="quote-heart">
+            ♥
+        </div>
+
+        <p>
+            "We've been through a lot
+            & We will get through it together"
+        </p>
+
+        <span>
+            — JONMIR
+        </span>
+
+    </section>
+
+    <footer>
+
+        <h2>
+            JonMir ♡
+        </h2>
+
+        <p>
+            Carin' for our future, one memory at a time.
+        </p>
+
+    </footer>
+
+
+</body>
+</html>

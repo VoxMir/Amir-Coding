@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About JonMir</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #3d3030;
+
+            background:
+                linear-gradient(
+                    rgba(255, 236, 236, 0.72),
+                    rgba(236, 211, 211, 0.78)
+                ),
+                url("{{ url_for('static', filename='images/about.jpg') }}");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+
+        nav {
+            width: 100%;
+            padding: 22px 7%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 55px;
+
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #332929;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+
+            position: relative;
+            transition: 0.3s ease;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -7px;
+
+            width: 0;
+            height: 2px;
+
+            background: #9d6c6c;
+            transform: translateX(-50%);
+            transition: 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #9d6c6c;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+
+        .hero {
+            min-height: 78vh;
+            padding: 80px 8%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            width: min(1100px, 100%);
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .hero-text {
+            padding: 45px;
+
+            background: rgba(255, 248, 248, 0.55);
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 25px;
+
+            box-shadow: 0 20px 60px rgba(89, 57, 57, 0.15);
+        }
+
+        .small-title {
+            color: #9b6b6b;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(45px, 6vw, 75px);
+            line-height: 0.95;
+            color: #382b2b;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #a26f6f;
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #594949;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 13px 25px;
+
+            background: #4b4141;
+            color: white;
+
+            text-decoration: none;
+            border-radius: 30px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            transition: 0.3s ease;
+        }
+
+        .button:hover {
+            background: #9b6b6b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(75, 65, 65, 0.25);
+        }
+
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 430px;
+            height: 500px;
+
+            object-fit: cover;
+
+            border-radius: 220px 220px 25px 25px;
+
+            border: 10px solid rgba(255, 255, 255, 0.55);
+
+            box-shadow:
+                0 25px 60px rgba(70, 45, 45, 0.25);
+
+            transform: rotate(2deg);
+            transition: 0.4s ease;
+        }
+
+        .hero-image img:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+
+        .story {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: #a26f6f;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .section-title h2 {
+            margin-top: 10px;
+
+            font-family: Georgia, serif;
+            font-size: 42px;
+            color: #382b2b;
+        }
+
+        .story-card {
+            max-width: 950px;
+            margin: auto;
+
+            padding: 50px;
+
+            background: rgba(255, 248, 248, 0.68);
+            backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+
+            box-shadow: 0 20px 60px rgba(89, 57, 57, 0.12);
+
+            text-align: center;
+        }
+
+        .story-card p {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #554747;
+        }
+
+        .heart {
+            color: #a26f6f;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+
+        .values {
+            padding: 30px 8% 100px;
+        }
+
+        .value-grid {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .value-card {
+            padding: 35px 25px;
+            text-align: center;
+
+            background: rgba(255, 248, 248, 0.6);
+            backdrop-filter: blur(12px);
+
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+
+            transition: 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(80, 50, 50, 0.15);
+        }
+
+        .value-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .value-card h3 {
+            font-family: Georgia, serif;
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #665858;
+        }
+
+
+        .gallery {
+            padding: 80px 8% 110px;
+        }
+
+        .photos {
+            max-width: 1050px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .photo {
+            overflow: hidden;
+            border-radius: 20px;
+
+            background: white;
+            box-shadow: 0 15px 35px rgba(70, 45, 45, 0.15);
+
+            aspect-ratio: 1 / 1;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            transition: 0.5s ease;
+        }
+
+        .photo:hover img {
+            transform: scale(1.08);
+        }
+
+
+        footer {
+            padding: 45px 20px;
+            text-align: center;
+
+            background: rgba(55, 45, 45, 0.88);
+            color: #eee0e0;
+        }
+
+        footer h2 {
+            font-family: Georgia, serif;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: #cdbebe;
+        }
+
+
+        @media (max-width: 800px) {
+
+            nav {
+                gap: 20px;
+                padding: 18px 10px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 50px 20px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .hero-text {
+                padding: 30px;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                height: 400px;
+                max-width: 330px;
+            }
+
+            .story {
+                padding: 60px 20px;
+            }
+
+            .story-card {
+                padding: 30px 22px;
+            }
+
+            .story-card p {
+                font-size: 16px;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photos {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="{{ url_for('jonmir') }}">Home</a>
+
+        <a href="#about">About</a>
+
+        <a href="{{ url_for('memories') }}">Our Memories</a>
+
+        <a href="{{ url_for('backups') }}">Our Backups</a>
+
+        <a href="https://www.youtube.com/@JaVoxMashups">
+            YouTube
+        </a>
+    </nav>
+
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-text">
+
+                <div class="small-title">
+                    About Us
+                </div>
+
+                <h1>
+                    Meet <span>JonMir</span>
+                </h1>
+
+                <p>
+                    Two people, one story, and a whole lot of memories.
+                    JonMir is about the little moments, the inside jokes,
+                    the laughter, and the connection that makes everything
+                    feel a little more special.
+                </p>
+
+                <a class="button" href="{{ url_for('memories') }}">
+                    Explore Our Memories →
+                </a>
+
+            </div>
+
+
+            <div class="hero-image">
+
+                <img
+                    src="{{ url_for('static', filename='images/jonmir_aboutus.jpg') }}"
+                    alt="JonMir"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="story" id="about">
+
+        <div class="section-title">
+
+            <span>Our Story</span>
+
+            <h2>Carin' For Our Future</h2>
+
+        </div>
+
+
+        <div class="story-card">
+
+            <div class="heart">♥</div>
+
+            <p>
+                Amir and Jon are the kind of couple that makes everyone else
+                in the room automatically smile. They have this effortless,
+                magnetic chemistry where just watching them interact feels
+                like watching a masterclass in being adorable.
+                <br><br>
+
+                Whether they're trading quick-witted banter, speaking in a
+                secret language of inside jokes and half-sentences that only
+                they understand, or simply existing together in the same
+                space, the warmth between them is undeniable.
+                <br><br>
+
+                It's in the way Amir's face lights up the second Jon starts
+                laughing, and the way Jon instinctively makes space for Amir
+                without even having to look.
+                <br><br>
+
+                They balance each other perfectly — a synchronized duo of
+                shared humor and deep affection — proving that they aren't
+                just a great match; they are entirely, unapologetically
+                perfect for each other.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="values">
+
+        <div class="section-title">
+
+            <span>What Makes Us</span>
+
+            <h2>JonMir</h2>
+
+        </div>
+
+
+        <div class="value-grid">
+
+            <div class="value-card">
+
+                <div class="value-icon">♡</div>
+
+                <h3>Love</h3>
+
+                <p>
+                    A connection built around genuine affection,
+                    understanding, and always being there for one another.
+                </p>
+
+            </div>
+
+
+            <div class="value-card">
+
+                <div class="value-icon">✦</div>
+
+                <h3>Laughter</h3>
+
+                <p>
+                    Endless jokes, ridiculous moments, and the kind of
+                    laughter that turns ordinary days into memories.
+                </p>
+
+            </div>
+
+
+            <div class="value-card">
+
+                <div class="value-icon">∞</div>
+
+                <h3>Our Future</h3>
+
+                <p>
+                    Looking forward together and creating even more moments
+                    worth remembering along the way.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="gallery">
+
+        <div class="section-title">
+
+            <span>A Few Moments</span>
+
+            <h2>Our Gallery</h2>
+
+        </div>
+
+
+        <div class="photos">
+
+            <div class="photo">
+                <img
+                    src="{{ url_for('static', filename='images/jonmir_aboutus1.jpg') }}"
+                    alt="JonMir memory 1"
+                >
+            </div>
+
+            <div class="photo">
+                <img
+                    src="{{ url_for('static', filename='images/jonmir_aboutus2.jpg') }}"
+                    alt="JonMir memory 2"
+                >
+            </div>
+
+            <div class="photo">
+                <img
+                    src="{{ url_for('static', filename='images/jonmir_aboutus3.jpg') }}"
+                    alt="JonMir memory 3"
+                >
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <footer>
+
+        <h2>JonMir ♡</h2>
+
+        <p>
+            Carin' for our future, one memory at a time.
+        </p>
+
+    </footer>
+
+</body>
+</html>

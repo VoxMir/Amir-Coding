@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JonMir Applications</title>
+</head>
+    <body style="background-image: url('{{ url_for('static', filename='images/applicationsbackground.jpg') }}'); background-size: cover">
+        <div style="display: flex; flex-direction: column; margin-top: 50px; gap: 50px;">
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div style="font-family: Georgia, 'Times New Roman', Times, serif; font-weight: bold; color: rgb(252, 155, 155); font-size: 30px; max-height: 100px;">JonMir Applications
+                </div>
+                <div style="color: rgb(248, 204, 177); padding-top: 10px; margin-bottom: 130px">Here you can find the list of applications you can download</div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 70px;">
+                <a href="{{ url_for('static', filename='downloads/Jonmir World_0.1.4_x64-setup.exe') }}" download style="background: linear-gradient(to bottom,var(--btn-orange-top,#703c0c),var(--btn-orange-bottom,#80512a));; padding: 10px; border-radius: 15px; text-decoration: none; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: aliceblue; width: 30%; display: flex; flex-direction: row; justify-content: center;">
+                Download The Memories App
+                </a>
+                <a href="{{ url_for('static', filename='downloads/jonmir-signal-production-win-x64-9.4.1.exe') }}" download style="background: linear-gradient(to bottom,var(--btn-orange-top,#703c0c),var(--btn-orange-bottom,#80512a));; padding: 10px; border-radius: 15px; text-decoration: none; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: aliceblue; width: 30%; display: flex; flex-direction: row; justify-content: center;">
+                Download The Signal App
+                </a><br>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; color: rgb(237, 124, 124);">
+            <footer style="text-align: center; padding: 20px; color: #b64848; min-height: auto; margin-top: 200px;">
+                Applications developed by <strong>JonMir ツ</strong> · © 2026
+            </footer>
+            </div>
+        </div>
+    </body>
+</html>

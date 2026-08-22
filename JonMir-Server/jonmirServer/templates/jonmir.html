@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body style="background-image: url('{{ url_for('static', filename='images/Desktop.png') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+    <div
+        class="absolute top-[37px] left-[-130px] w-96 rotate-[-44.71deg] text-center justify-start text-yellow-100 text-5xl font-normal font-['Inter']">
+        JonMir
+    </div>
+        <div class="self-stretch flex flex-col justify-start items-start">
+            <div class="flex self-stretch px-8 justify-end items-center gap-14">
+                <div>
+                    <a href="https://www.youtube.com/@JaVoxMashups">
+                        <img src="{{ url_for('static', filename='images/Youtube.svg') }}" alt="YouTube">
+                    </a>
+                </div>
+                <div class="flex justify-start text-white text-3xl font-normal font-['Inter']">
+                    <a href="{{ url_for('memories') }}">
+                        Memories
+                    </a>
+                </div>
+                <div class="flex justify-start text-white text-3xl font-normal font-['Inter']">
+                    <a href="{{ url_for('backups') }}">Our Backups</a>
+                </div>
+                <div
+                    class="text-center justify-center text-white text-3xl font-normal font-['Inter'] leading-[53.20px] tracking-tight [text-shadow:_0px_4px_4px_rgb(0_0_0_/_0.25)]">
+                    <a href="{{ url_for('aboutus') }}">About Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-row px-8 flex-1 self-stretch">
+            <div class="flex flex-1 flex-col self-stretch">
+                <div class="flex-1 flex flex-col items-center justify-center">
+                    <div class="flex flex-col gap-6 items-end">
+                        <div class="text-end justify-center text-white text-7xl font-normal font-['Julee']">A
+                            private website</div>
+                        <div class="flex self-stretch justify-center items-center gap-5">
+                            <img src="{{ url_for('static', filename='images/Alert circle.svg') }}" alt="alert">
+                            <div class="justify-end text-white text-4xl font-normal font-['Jura']">
+                                Under Development.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-5 text-rose-400 text-4xl font-extrabold font-['Inter']"><a href="{{ url_for('jonmir_apps') }}">Download
+                    JonMir Apps
+                    </a>
+                </div>
+            </div>
+            <div>
+                <img class="rounded-[90px] w-110 h-auto ml-auto mb-[30px] mt-5" src="{{ url_for('static', filename='images/jonmir.jpg') }}" alt="jonmir" />
+            </div>
+        </form>
+</body>
+
+</html>

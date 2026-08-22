@@ -1,0 +1,973 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Backups | JonMir</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            color: #3d3030;
+
+            background:
+                linear-gradient(
+                    rgba(255, 236, 236, 0.72),
+                    rgba(236, 211, 211, 0.82)
+                ),
+                url("{{ url_for('static', filename='images/about.jpg') }}");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+        }
+
+
+        nav {
+
+            width: 100%;
+
+            padding: 22px 7%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 55px;
+
+            background: rgba(255, 255, 255, 0.35);
+
+            backdrop-filter: blur(12px);
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, 0.5);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        nav a {
+
+            color: #332929;
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            position: relative;
+
+            transition: 0.3s ease;
+        }
+
+
+        nav a::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+
+            bottom: -7px;
+
+            width: 0;
+
+            height: 2px;
+
+            background: #9d6c6c;
+
+            transform: translateX(-50%);
+
+            transition: 0.3s ease;
+        }
+
+
+        nav a:hover {
+
+            color: #9d6c6c;
+        }
+
+
+        nav a:hover::after {
+
+            width: 100%;
+        }
+
+
+        .heading {
+
+            text-align: center;
+
+            padding: 90px 20px 65px;
+        }
+
+
+        .heading .small-title {
+
+            color: #9b6b6b;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+
+        .heading h1 {
+
+            font-family: Georgia, serif;
+
+            font-size: clamp(
+                48px,
+                7vw,
+                76px
+            );
+
+            line-height: 0.95;
+
+            color: #382b2b;
+
+            margin-bottom: 22px;
+        }
+
+
+        .heading h1 span {
+
+            color: #a26f6f;
+        }
+
+
+        .heading p {
+
+            max-width: 650px;
+
+            margin: auto;
+
+            color: #5d4c4c;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+        }
+
+
+        .archive-intro {
+
+            width: min(950px, 90%);
+
+            margin: 0 auto 80px;
+
+            padding: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 30px;
+
+            background:
+                rgba(255, 248, 248, 0.65);
+
+            backdrop-filter: blur(15px);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.7);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 20px 60px
+                rgba(89, 57, 57, 0.13);
+        }
+
+
+        .archive-icon {
+
+            min-width: 80px;
+
+            height: 80px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 20px;
+
+            background: #4b4141;
+
+            color: white;
+
+            font-size: 35px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(70, 50, 50, 0.2);
+        }
+
+
+        .archive-intro h2 {
+
+            font-family: Georgia, serif;
+
+            color: #382b2b;
+
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .archive-intro p {
+
+            color: #655656;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+
+        .section-title span {
+
+            color: #a26f6f;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+        }
+
+
+        .section-title h2 {
+
+            font-family: Georgia, serif;
+
+            font-size: 42px;
+
+            color: #382b2b;
+
+            margin-top: 10px;
+        }
+
+        .backups {
+
+            width: min(1100px, 90%);
+
+            margin: auto;
+
+            padding-bottom: 100px;
+        }
+
+
+        .backup-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
+
+            gap: 30px;
+        }
+
+        .backup-card {
+
+            padding: 32px;
+
+            background:
+                rgba(255, 250, 250, 0.72);
+
+            backdrop-filter: blur(12px);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.75);
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(70, 45, 45, 0.13);
+
+            transition: 0.35s ease;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .backup-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #9b6b6b,
+                    #d6aaaa
+                );
+        }
+
+
+        .backup-card:hover {
+
+            transform:
+                translateY(-9px);
+
+            box-shadow:
+                0 25px 50px
+                rgba(70, 45, 45, 0.2);
+        }
+
+
+        .backup-number {
+
+            color: #a26f6f;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .backup-card h3 {
+
+            font-family: Georgia, serif;
+
+            font-size: 26px;
+
+            color: #382b2b;
+
+            margin-bottom: 12px;
+        }
+
+
+        .backup-card p {
+
+            color: #665858;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+        .backup-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            padding: 11px 20px;
+
+            background: #4b4141;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 25px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: 0.3s ease;
+        }
+
+
+        .backup-button:hover {
+
+            background: #9b6b6b;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(75, 65, 65, 0.2);
+        }
+
+
+        .status {
+
+            width: min(900px, 90%);
+
+            margin: 0 auto 100px;
+
+            padding: 35px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 248, 248, 0.58);
+
+            backdrop-filter: blur(12px);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.7);
+
+            border-radius: 25px;
+        }
+
+
+        .status-title {
+
+            color: #a26f6f;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+
+        .status h2 {
+
+            font-family: Georgia, serif;
+
+            color: #382b2b;
+
+            font-size: 28px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .status p {
+
+            color: #665858;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        .status-dot {
+
+            display: inline-block;
+
+            width: 10px;
+
+            height: 10px;
+
+            background: #7d9b7d;
+
+            border-radius: 50%;
+
+            margin-right: 7px;
+
+            box-shadow:
+                0 0 10px
+                rgba(125, 155, 125, 0.7);
+        }
+
+
+        .quote {
+
+            width: min(850px, 90%);
+
+            margin: 0 auto 110px;
+
+            padding: 60px 35px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 248, 248, 0.55);
+
+            backdrop-filter: blur(12px);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.65);
+
+            border-radius: 25px;
+        }
+
+
+        .quote .heart {
+
+            color: #a26f6f;
+
+            font-size: 35px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .quote p {
+
+            font-family: Georgia, serif;
+
+            font-size: 26px;
+
+            font-style: italic;
+
+            line-height: 1.6;
+
+            color: #4b3d3d;
+        }
+
+
+        .quote span {
+
+            display: block;
+
+            margin-top: 20px;
+
+            font-size: 12px;
+
+            color: #9b6b6b;
+
+            letter-spacing: 3px;
+        }
+
+        footer {
+
+            padding: 45px 20px;
+
+            text-align: center;
+
+            background:
+                rgba(55, 45, 45, 0.88);
+
+            color: #eee0e0;
+        }
+
+
+        footer h2 {
+
+            font-family: Georgia, serif;
+
+            margin-bottom: 10px;
+        }
+
+
+        footer p {
+
+            font-size: 13px;
+
+            color: #cdbebe;
+        }
+
+        @media (max-width: 800px) {
+
+            nav {
+
+                gap: 20px;
+
+                padding: 18px 10px;
+            }
+
+
+            nav a {
+
+                font-size: 12px;
+            }
+
+
+            .heading {
+
+                padding-top: 65px;
+            }
+
+
+            .archive-intro {
+
+                flex-direction: column;
+
+                text-align: center;
+
+                padding: 35px 25px;
+            }
+
+
+            .backup-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .quote p {
+
+                font-size: 21px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <nav>
+
+        <a href="{{ url_for('jonmir') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('aboutus') }}">
+            About
+        </a>
+
+        <a href="{{ url_for('memories') }}">
+            Memories
+        </a>
+
+        <a href="{{ url_for('backups') }}">
+            Our Backups
+        </a>
+
+        <a href="https://www.youtube.com/@JaVoxMashups">
+            YouTube
+        </a>
+
+    </nav>
+
+
+
+    <header class="heading">
+
+        <div class="small-title">
+            JonMir
+        </div>
+
+        <h1>
+            Our <span>Backups</span>
+        </h1>
+
+        <p>
+            A little archive for the things we never want to lose.
+            Because some memories deserve a second home.
+        </p>
+
+    </header>
+
+
+
+    <section class="archive-intro">
+
+        <div class="archive-icon">
+            ♡
+        </div>
+
+        <div>
+
+            <h2>
+                The JonMir Archive
+            </h2>
+
+            <p>
+                This is our little backup space — a place where
+                important pictures, memories, projects, and other
+                JonMir things can stay safe.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="backups">
+
+        <div class="section-title">
+
+            <span>
+                The Archive
+            </span>
+
+            <h2>
+                Saved With Love
+            </h2>
+
+        </div>
+
+
+        <div class="backup-grid">
+
+
+            <div class="backup-card">
+
+                <div class="backup-number">
+                    BACKUP 01
+                </div>
+
+                <h3>
+                    Photos
+                </h3>
+
+                <p>
+                    A collection of pictures and moments that
+                    are worth keeping safe forever.
+                </p>
+
+                <!-- Change this link to your actual backup -->
+                <a
+                    href="#"
+                    class="backup-button"
+                >
+                    Open Archive →
+                </a>
+
+            </div>
+
+
+            <div class="backup-card">
+
+                <div class="backup-number">
+                    BACKUP 02
+                </div>
+
+                <h3>
+                    Memories
+                </h3>
+
+                <p>
+                    Important memories and little pieces of our
+                    story that we don't want to disappear.
+                </p>
+
+                <a
+                    href="{{ url_for('memories') }}"
+                    class="backup-button"
+                >
+                    View Memories →
+                </a>
+
+            </div>
+
+
+
+            <div class="backup-card">
+
+                <div class="backup-number">
+                    BACKUP 03
+                </div>
+
+                <h3>
+                    Videos
+                </h3>
+
+                <p>
+                    Videos, edits, and other special moments
+                    saved for the future.
+                </p>
+
+                <a
+                    href="https://www.youtube.com/@JaVoxMashups"
+                    class="backup-button"
+                >
+                    Watch Videos →
+                </a>
+
+            </div>
+
+            <div class="backup-card">
+
+                <div class="backup-number">
+                    BACKUP 04
+                </div>
+
+                <h3>
+                    Projects
+                </h3>
+
+                <p>
+                    Websites, creations, experiments, and other
+                    little projects that belong to our story.
+                </p>
+
+                <a
+                    href="#"
+                    class="backup-button"
+                >
+                    Open Projects →
+                </a>
+
+            </div>
+
+            <div class="backup-card">
+
+                <div class="backup-number">
+                    BACKUP 05
+                </div>
+
+                <h3>
+                    Important Stuff
+                </h3>
+
+                <p>
+                    Anything else that deserves a safe place
+                    in the JonMir archive.
+                </p>
+
+                <a
+                    href="#"
+                    class="backup-button"
+                >
+                    Open Archive →
+                </a>
+
+            </div>
+
+            <div class="backup-card">
+
+                <div class="backup-number">
+                    BACKUP 06
+                </div>
+
+                <h3>
+                    Future
+                </h3>
+
+                <p>
+                    This space is waiting for all the new
+                    memories we're going to create.
+                </p>
+
+                <a
+                    href="{{ url_for('jonmir') }}"
+                    class="backup-button"
+                >
+                    Go Home →
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <section class="status">
+
+        <div class="status-title">
+            Archive Status
+        </div>
+
+        <h2>
+            <span class="status-dot"></span>
+            Everything is safe ♡
+        </h2>
+
+        <p>
+            The JonMir archive is here to keep the important
+            things close, even when they're not on the main page.
+        </p>
+
+    </section>
+
+
+    <section class="quote">
+
+        <div class="heart">
+            ♥
+        </div>
+
+        <p>
+            "Some things are worth keeping
+            forever."
+        </p>
+
+        <span>
+            — JONMIR
+        </span>
+
+    </section>
+
+
+    <footer>
+
+        <h2>
+            JonMir ♡
+        </h2>
+
+        <p>
+            Carin' for our future, one memory at a time.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
