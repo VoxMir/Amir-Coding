@@ -4,11 +4,11 @@ A simple personal website for **JonMir**, made with Flask.
 
 ## Pages
 
-- 🏠 Home
-- 💗 About JonMir
-- 📸 Our Memories
-- 🗂️ Our Backups
-- ▶️ YouTube
+- A first, private project
+- JonMir Life
+- JonMir Memories
+- JonMir Backups
+- JonMir Mashups
 
 ## Built With
 

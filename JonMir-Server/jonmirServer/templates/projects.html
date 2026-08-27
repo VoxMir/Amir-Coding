@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>JonMir Applications</title>
+    <title>JonMir Projects</title>
 
     <style>
 
@@ -37,7 +37,7 @@
             background-attachment: fixed;
         }
 
-        .applications-container {
+        .projects-container {
             width: min(900px, 90%);
 
             padding: 55px 50px;
@@ -98,7 +98,7 @@
             margin-bottom: 45px;
         }
 
-        .applications {
+        .projects {
             display: flex;
 
             align-items: center;
@@ -107,7 +107,7 @@
             gap: 25px;
         }
 
-        .download-btn {
+        .project-btn {
             width: 45%;
 
             padding: 15px 20px;
@@ -134,7 +134,7 @@
             transition: 0.3s ease;
         }
 
-        .download-btn:hover {
+        .project-btn:hover {
             background: #8c6464;
 
             transform: translateY(-4px);
@@ -143,7 +143,7 @@
                 0 12px 25px rgba(89, 57, 57, 0.18);
         }
 
-        .download-btn::before {
+        .project-btn::before {
             content: "♥";
 
             color: #f3caca;
@@ -175,7 +175,7 @@
 
         @media (max-width: 650px) {
 
-            .applications-container {
+            .projects-container {
                 padding: 40px 25px;
             }
 
@@ -187,13 +187,13 @@
                 margin-bottom: 35px;
             }
 
-            .applications {
+            .projects {
                 flex-direction: column;
 
                 gap: 15px;
             }
 
-            .download-btn {
+            .project-btn {
                 width: 100%;
             }
 
@@ -208,7 +208,7 @@
 
 <body>
 
-    <div class="applications-container">
+    <div class="projects-container">
 
         <div class="heart">
             ♥
@@ -219,37 +219,33 @@
         </div>
 
         <h1>
-            JonMir Applications
+            JonMir Projects
         </h1>
 
         <p class="description">
-            Here you can find the list of applications you can download
+            Choose whether you want to check Amir or Jon's projects!
         </p>
 
-        <div class="applications">
+        <div class="projects">
 
             <a
-                href="{{ url_for('static', filename='downloads/Jonmir World_0.1.4_x64-setup.exe') }}"
-                download
-                class="download-btn"
+                href="https://github.com/VoxMir/"
+                class="project-btn"
             >
-                Download The Memories App
+                Check Amir's Github
             </a>
 
             <a
-                href="{{ url_for('static', filename='downloads/jonmir-signal-production-win-x64-9.4.1.exe') }}"
-                download
-                class="download-btn"
+                href="https://github.com/Eclipse7899"
+                class="project-btn"
             >
-                Download The Signal App
+                Check Jon's Github
             </a>
 
         </div>
 
         <footer>
-            Applications developed by
-            <strong>JonMir ツ</strong>
-            · © 2026
+            <strong>JonMir ツ</strong> · © 2026
         </footer>
 
     </div>

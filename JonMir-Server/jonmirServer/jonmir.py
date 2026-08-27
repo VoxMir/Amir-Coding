@@ -116,6 +116,10 @@ def changeemail():
 
     return render_template("forgotemail.html")
 
+@app.route("/jonmir.html/projects.html")
+def projects():
+    return render_template("projects.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
